@@ -1,3 +1,4 @@
+import 'package:animation/screens/home/home_screen.dart';
 import 'package:animation/screens/login/widget/form_container.dart';
 import 'package:animation/screens/login/widget/sign_up_button.dart';
 import 'package:animation/screens/login/widget/stagger_animation.dart';
@@ -21,6 +22,17 @@ class _LoginScreenState extends State<LoginScreen>
         vsync: this,
       duration: Duration(seconds: 2)
     );
+
+    _animationController.addStatusListener((status){
+      if(status == AnimationStatus.completed){
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: ((context)=> HomeScreen())
+          )
+        );
+      }
+    });
+
   }
 
   @override
@@ -31,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 4; //para deixar mais lento
+    timeDilation = 1; //valor maior para deixar mais lento
 
     return Scaffold(
       body: Container(
